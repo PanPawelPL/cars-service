@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
+import { CarResolve } from '../cars/car-resolve.service';
 
 
 
@@ -15,6 +16,7 @@ import { RouterModule } from '@angular/router';
   ],
   exports: [
     SidebarComponent
-  ]
+  ],
+  providers: [CarResolve]
 })
 export class CoreModule { }
