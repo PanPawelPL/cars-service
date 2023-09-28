@@ -14,6 +14,9 @@ export class CarsService {
 
   getCars(): Observable<Car[]> {
     return this.http.request( 'GET', this.apiURL, { responseType: 'json'}) as Observable<Car[]>;
+  }
 
+  getCar(id: number): Observable<Car> {
+    return this.http.request( 'GET', this.apiURL + `/${id}`, { responseType: 'json'}) as Observable<Car>;
   }
 }

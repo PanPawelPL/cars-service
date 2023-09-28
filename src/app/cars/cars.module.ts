@@ -4,6 +4,7 @@ import { CarsListComponent } from './cars-list/cars-list.component';
 import { TotalCostComponent } from './total-cost/total-cost.component';
 import { SharedModule } from '../shared/shared.module';
 import { CarDetailsComponent } from './car-details/car-details.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -15,7 +16,8 @@ import { CarDetailsComponent } from './car-details/car-details.component';
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    RouterModule
   ],
   exports: [
     CarsListComponent
