@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation, ViewChild, AfterViewInit } from '
 import { Car } from '../models/car';
 import { TotalCostComponent } from '../total-cost/total-cost.component';
 import { CarsService } from '../cars.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'cs-cars-list',
@@ -19,7 +20,8 @@ export class CarsListComponent implements OnInit, AfterViewInit {
   cars: Car[] = [];
 
   constructor(
-    private carsService: CarsService
+    private carsService: CarsService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -35,6 +37,10 @@ export class CarsListComponent implements OnInit, AfterViewInit {
       this.cars = cars;
       this.countTotalCost();
     })
+  }
+
+  goToCarDetails(car: Car) {
+    this.router.navigate(['/cars', car.id]);
   }
 
   showGross(): void {
