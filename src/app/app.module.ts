@@ -7,6 +7,7 @@ import { CarsModule } from './cars/cars.module';
 import { CarsService } from './cars/cars.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
+import { CarsRoutingModule } from './cars/cars-routing.modules';
 
 @NgModule({
   declarations: [
@@ -15,9 +16,10 @@ import { CoreModule } from './core/core.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    CarsRoutingModule,
     HttpClientModule,
     CarsModule,
-    CoreModule
+    CoreModule,
   ],
   providers: [CarsService],
   bootstrap: [AppComponent]
