@@ -10,6 +10,7 @@ import { CarDetailsComponent } from './car-details/car-details.component';
 import { IncomeTaxComponent } from './total-cost/income-tax/income-tax.component';
 import { CarResolve } from './car-resolve.service';
 import { CostSharedService } from './cost-shared.service';
+import { CarTableRowComponent } from './car-table-row/car-table-row.component';
 
 
 
@@ -18,7 +19,8 @@ import { CostSharedService } from './cost-shared.service';
     CarsListComponent,
     TotalCostComponent,
     CarDetailsComponent,
-    IncomeTaxComponent
+    IncomeTaxComponent,
+    CarTableRowComponent
   ],
   imports: [
     CommonModule,
