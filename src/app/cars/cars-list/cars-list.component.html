@@ -13,7 +13,7 @@
 
     <div class="row">
         <div class="col-sm-12">
-            <table *ngIf="cars && cars.length > 0; else noCarsInfo" class="table table-striped">
+            <table *ngIf="cars && cars.length > 0; else noCarsInfo" class="cs-table table table-striped">
                 <thead>
                     <tr>
                         <th>car</th>
@@ -26,14 +26,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let car of cars; let i = index" class="row-car" (click)="goToCarDetails(car)">
-                        <td [ngClass]="{'row-error': car.isFullyDamaged}">{{ car?.model }}</td>
-                        <td>{{ car?.plate }}</td>
-                        <td>{{ car?.deliveryDate}}</td>
-                        <td>{{ car?.deadline }}</td>
-                        <td>{{ car?.clientFirstName }} {{ car?.clientSurname }}</td>
-                        <td>{{ car?.cost }}</td>
-                        <td>ACTION PLACEHOLDER</td>
+                    <tr *ngFor="let car of cars; let i = index" (click)="goToCarDetails(car)" class="row-car">
+                        <td csImportant [ngClass]="{'row-error': car.isFullyDamaged}">{{ car.model | uppercase}}</td>
+                        <td>{{ car.plate | uppercase }}</td>
+                        <td>{{ car.deliveryDate | date:'shortDate'}}</td>
+                        <td>{{ car.deadline | date:'shortDate'}}</td>
+                        <td>{{ car.clientFirstName }} {{ car.clientSurname | surnameShortcut }}</td>
+                        <td csImportant>{{ car.cost | currency:'PLN':true}}</td>
+                        <td (click)="removeCar(car, $event)">( X )</td>
                     </tr>
                 </tbody>
             </table>
@@ -55,6 +55,84 @@
             </button>
 
         </div>
+    </div>
+
+    <p class="data-header">Add a new car</p>
+
+    <div class="data-container">
+        <form [formGroup]="carForm">
+
+            <div class="row form-group">
+                <div class="col-sm-4">
+                    <label>Model</label>
+                    <input formControlName="model" type="text" class="form-control" placeholder="model">
+                    <p *ngIf="!carForm.get('model')?.valid && carForm.get('model')?.dirty" class="error">This field is required!</p>
+                </div>
+                <div class="col-sm-4">
+                    <label>Type</label>
+                    <input formControlName="type" type="text" class="form-control" placeholder="type">
+                </div>
+                <div class="col-sm-4">
+                    <label>Plate</label>
+                    <input formControlName="plate" type="text" class="form-control" placeholder="plate">
+                    <p *ngIf="!carForm.get('plate')?.valid && carForm.get('plate')?.dirty" class="error">This field is required and must contain 3-7 characters</p>
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-sm-4">
+                    <label>Delivery date</label>
+                    <input formControlName="deliveryDate" type="text" class="form-control" placeholder="delivery name">
+                </div>
+                <div class="col-sm-4">
+                    <label>Deadline</label>
+                    <input formControlName="deadline" type="text" class="form-control" placeholder="deadline">
+                </div>
+                <div class="col-sm-4">
+                    <label>Is car fully damage</label>
+                    <input formControlName="isFullyDamaged" type="checkbox">
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-sm-4">
+                    <label>Color</label>
+                    <input formControlName="color" type="text" class="form-control" placeholder="color">
+                </div>
+                <div class="col-sm-4">
+                    <label>Power</label>
+                    <input formControlName="power" type="number" class="form-control" placeholder="power">
+                </div>
+                <div class="col-sm-4">
+                    <label>Cost</label>
+                    <input formControlName="cost" type="numebr" class="form-control" placeholder="cost">
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-sm-4">
+                    <label>Client First Name</label>
+                    <input formControlName="clientFirstName" type="text" class="form-control" placeholder="client first name">
+                </div>
+                <div class="col-sm-4">
+                    <label>Client Last Name</label>
+                    <input formControlName="clientSurname" type="text" class="form-control" placeholder="client last name">
+                </div>
+                <div class="col-sm-4">
+                    <label>Year</label>
+                    <input formControlName="year" type="text" class="form-control" placeholder="year">
+                </div>
+            </div>
+
+            
+            <div class="row">
+                <div class="col-sm-12">
+                    <button (click)="addCar()" type="submit" [disabled]="carForm.invalid" class="btn btn-primary float-end">Add car</button>
+                    <button (click)="carForm.reset()" class="btn btn-default float-end">Reset</button>
+                </div>
+            </div>
+
+        </form>
     </div>
 
     <div class="row" *ngIf="grossCost">

@@ -19,4 +19,17 @@ export class CarsService {
   getCar(id: number): Observable<Car> {
     return this.http.request( 'GET', this.apiURL + `/${id}`, { responseType: 'json'}) as Observable<Car>;
   }
+
+  addCar(data: Car): Observable<Car>{
+    return this.http.post( this.apiURL, data, { responseType: 'json'}) as Observable<Car>;
+  }
+
+  updateCar(id: number, data: Car): Observable<Car> {
+    return this.http.put(this.apiURL + `/${id}`, data, { responseType: 'json'}) as Observable<Car>;
+  }
+
+  removeCar(id: number): Observable<Car> {
+    return this.http.delete(this.apiURL + `/${id}`, { responseType: 'json'}) as Observable<Car>;
+  }
+
 }
