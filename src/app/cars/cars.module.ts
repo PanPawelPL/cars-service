@@ -7,6 +7,9 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { CarsListComponent } from './cars-list/cars-list.component';
 import { TotalCostComponent } from './total-cost/total-cost.component';
 import { CarDetailsComponent } from './car-details/car-details.component';
+import { IncomeTaxComponent } from './total-cost/income-tax/income-tax.component';
+import { CarResolve } from './car-resolve.service';
+import { CostSharedService } from './cost-shared.service';
 
 
 
@@ -14,7 +17,8 @@ import { CarDetailsComponent } from './car-details/car-details.component';
   declarations: [
     CarsListComponent,
     TotalCostComponent,
-    CarDetailsComponent
+    CarDetailsComponent,
+    IncomeTaxComponent
   ],
   imports: [
     CommonModule,
@@ -24,6 +28,10 @@ import { CarDetailsComponent } from './car-details/car-details.component';
   ],
   exports: [
     CarsListComponent
+  ],
+  providers: [
+    CarResolve,
+    CostSharedService
   ]
 })
 export class CarsModule { }
